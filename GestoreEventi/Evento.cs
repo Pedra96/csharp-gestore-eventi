@@ -34,7 +34,7 @@ namespace GestoreEventi {
             }
         }
 
-        public string GetData() {
+        public string PrintData() {
 
             return data.ToShortDateString();
         }
@@ -83,7 +83,7 @@ namespace GestoreEventi {
             
         }
         public override string ToString() {
-            string print = "Data: " + GetData() + " - "+ "Titolo: " + GetTitolo();
+            string print = "Data: " + PrintData() + " - "+ "Titolo: " + GetTitolo();
             return print;
         }
     }

@@ -17,12 +17,10 @@ namespace GestoreEventi {
         public void AddEvento(Evento evento) {
             eventi.Add(evento);
         }
-        public static void GetListaEvento(List<Evento> lista) {
-            foreach(var evento in lista) {
-               Console.WriteLine(evento);
-            }
-            Console.WriteLine();
+        public List<Evento> GetListaEventi() {
+            return eventi;
         }
+
         public int EventiCount() {
             return eventi.Count;
         }
@@ -36,6 +34,7 @@ namespace GestoreEventi {
                 int posizione = i+1;
                 Console.WriteLine(posizione+ "° Evento " +eventi[i]);
             }
+            Console.WriteLine() ;
         }
     }
 }
