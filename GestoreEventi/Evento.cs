@@ -19,7 +19,7 @@ namespace GestoreEventi {
 
             SetTitolo(titolo);
             SetData(data);
-            this.CapienzaMax=CapienzaMax;
+            this.CapienzaMax = CapienzaMax;
             PostiPrenotati = 0;
 
         }
@@ -43,7 +43,7 @@ namespace GestoreEventi {
             if (DateTime.Parse(data) < DateTime.Now) {
                 throw new Exception("Data inserita non valida");
             }
-            
+
             this.data = DateTime.Parse(data);
         }
         public int GetCapienzaMax() {
@@ -55,26 +55,35 @@ namespace GestoreEventi {
         }
 
         public void PrenotaPosti(int Prenotazione) {
+            if (data > DateTime.Now) {
 
-            if (PostiPrenotati == CapienzaMax) {
-                throw new Exception("siamo al completo");
-            } else if (Prenotazione < 0) {
-                throw new Exception("non puoi prenotare meno di 0");
-            } else if ((PostiPrenotati + Prenotazione) > CapienzaMax) {
-                throw new Exception("Mi dispiace non ci sono abbastanza posti");
+
+                if (PostiPrenotati == CapienzaMax) {
+                    throw new Exception("siamo al completo");
+                } else if (Prenotazione < 0) {
+                    throw new Exception("non puoi prenotare meno di 0");
+                } else if ((PostiPrenotati + Prenotazione) > CapienzaMax) {
+                    throw new Exception("Mi dispiace non ci sono abbastanza posti");
+                } else {
+                    PostiPrenotati += Prenotazione;
+                }
             } else {
-                PostiPrenotati += Prenotazione;
+                Console.WriteLine("L'evento è già passato non puoi prenotare");
             }
         }
         public int PostiDisponibili() {
             return CapienzaMax - PostiPrenotati;
         }
         public void DisdirePrenotazione(int disdire) {
-            PostiPrenotati-= disdire;
+            if(data > DateTime.Now && PostiPrenotati!=0) {
+                PostiPrenotati -= disdire;
+            } else {
+                Console.WriteLine("Errore eventi già finito o non ci sono posti prenotati");
+            }
+            
         }
         public override string ToString() {
-            string print = "Data: " + GetData()+"\n";
-            print += "Titolo: " + GetTitolo();
+            string print = "Data: " + GetData() + " - "+ "Titolo: " + GetTitolo();
             return print;
         }
     }

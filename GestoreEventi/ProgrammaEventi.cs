@@ -27,13 +27,14 @@ namespace GestoreEventi {
             return eventi.Count;
         }
         public void EmptyList() {
-            eventi = new List<Evento>();
+            eventi.Clear();
         }
 
         public void GetEventi() {
             Console.WriteLine(Titolo + ":");
-            foreach (Evento evento in eventi) {
-                Console.WriteLine(evento);
+            for(int i=0;i<EventiCount();i++) {
+                int posizione = i+1;
+                Console.WriteLine(posizione+ "° Evento " +eventi[i]);
             }
         }
     }
