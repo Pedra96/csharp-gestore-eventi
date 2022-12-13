@@ -12,5 +12,12 @@ namespace GestoreEventi {
             }
             Console.WriteLine();
         }
+        public static int FiltroListaNome(List<Evento> lista,string input) {
+            foreach (var Evento in lista) {
+                if (Evento.GetTitolo() == input) {
+                    return lista.IndexOf(Evento);
+                }
+            }return -1;
+        }
     }
 }

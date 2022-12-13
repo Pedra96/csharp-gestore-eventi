@@ -20,7 +20,7 @@ for (int i = 0; i < NumeroEventi; i++) {
             string titolo = Console.ReadLine();
             Console.Write("Inserire data (dd/MM/yyyy): ");
             string data = Console.ReadLine();
-            Console.Write("Capienza masssima: ");
+            Console.Write("Capienza massima: ");
             string capienza = Console.ReadLine();
             Evento evento = new(titolo, data, int.Parse(capienza));
             ProgrammaEventi.AddEvento(evento);
@@ -64,7 +64,7 @@ for (int i = 0; i < NumeroConferenze; i++) {
             string titolo = Console.ReadLine();
             Console.Write("Inserire data (dd/MM/yyyy): ");
             string data = Console.ReadLine();
-            Console.Write("Capienza masssima: ");
+            Console.Write("Capienza massima: ");
             string capienza = Console.ReadLine();
             Console.Write("Inserire Relatore: ");
             string relatore = Console.ReadLine();
@@ -80,6 +80,39 @@ for (int i = 0; i < NumeroConferenze; i++) {
         }
     }
 }
+
 ProgrammaEventi.GetEventi();
+Console.WriteLine("Per quale evento vorresti prenotare?");
+input=Console.ReadLine();
+int FindEvento=Functions.FiltroListaNome(ProgrammaEventi.GetListaEventi(),input);
+if (FindEvento < 0) {
+    Console.WriteLine("elemento non trovato");
+} else {
+    try {
+        var EventoFiltrato = ProgrammaEventi.GetListaEventi()[FindEvento];
+        Console.WriteLine("Posti Disponibili: " + EventoFiltrato.PostiDisponibili());
+        Console.Write("Quanti posti vuoi prenotare?: ");
+        input = Console.ReadLine();
+        EventoFiltrato.PrenotaPosti(int.Parse(input));
+        Console.WriteLine("Posti Disponibili: " + EventoFiltrato.PostiDisponibili());
+    } catch (Exception ex) { Console.WriteLine(ex); }
+}
+Console.WriteLine("Per quale evento vorresti disdire?");
+input = Console.ReadLine();
+
+FindEvento = Functions.FiltroListaNome(ProgrammaEventi.GetListaEventi(), input);
+if (FindEvento < 0) {
+    Console.WriteLine("elemento non trovato");
+} else {
+    try {
+        var EventoFiltrato = ProgrammaEventi.GetListaEventi()[FindEvento];
+        Console.WriteLine("Posti prenotati: "+EventoFiltrato.GetPostiPrenotati());
+        Console.Write("Quanti posti vuoi disdire?: ");
+        input = Console.ReadLine();
+        EventoFiltrato.DisdirePrenotazione(int.Parse(input));
+        Console.WriteLine("Posti Disponibili: " + EventoFiltrato.PostiDisponibili());
+    }
+    catch (Exception ex) { Console.WriteLine(ex); }
+}
 
 ProgrammaEventi.EmptyList();

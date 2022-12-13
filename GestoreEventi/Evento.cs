@@ -75,10 +75,10 @@ namespace GestoreEventi {
             return CapienzaMax - PostiPrenotati;
         }
         public void DisdirePrenotazione(int disdire) {
-            if(data > DateTime.Now && PostiPrenotati!=0) {
+            if(data > DateTime.Now && PostiPrenotati!=0||PostiPrenotati-disdire>=0) {
                 PostiPrenotati -= disdire;
             } else {
-                Console.WriteLine("Errore eventi già finito o non ci sono posti prenotati");
+                Console.WriteLine("Errore evento già finito o non ci sono posti prenotati");
             }
             
         }
