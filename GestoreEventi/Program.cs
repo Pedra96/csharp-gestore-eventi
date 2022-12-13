@@ -3,15 +3,46 @@
 using GestoreEventi;
 using static System.Net.Mime.MediaTypeNames;
 
-/*try {
-    Evento test = new("le balene", "10/12/22", 12);
-}catch(Exception e) {
-    Console.WriteLine(e);
-}*/
+List<Evento> ListaEventi = new List<Evento>();
+
+Console.Write("Inserire un titolo: ");
+string titolo = Console.ReadLine();
+Console.Write("Inserire data (gg/mm/yyyy): ");
+string data = Console.ReadLine();
+Console.Write("Capienza masssima: ");
+string capienza = Console.ReadLine();
+
+Evento evento = new(titolo, data, int.Parse(capienza));
+
 try {
-    Evento test = new("le balene", "14/12/2022", 12);
-    Console.WriteLine(test.GetData());
-    Console.WriteLine(test);
+    Console.WriteLine("Posti prenotati " + evento.GetPostiPrenotati());
+    Console.WriteLine("Posti disponibili " + evento.PostiDisponibili());
+    Console.WriteLine("Vuoi prenotare? si/no");
+    string input = Console.ReadLine();
+    while (input.ToLower() == "si") {
+        Console.WriteLine("Quanti posti vuoi prenotare?");
+        string Prenotazione = Console.ReadLine();
+        evento.PrenotaPosti(int.Parse(Prenotazione));
+        Console.WriteLine("Posti prenotati vuoi prenotarne altri? si/no");
+        input = Console.ReadLine();
+    }
+    Console.WriteLine("Posti ancora disponibili: " + evento.PostiDisponibili());
+
+    Console.WriteLine("Vuoi disdire dei posti prenotati? si/no");
+    input = Console.ReadLine();
+    while (input.ToLower() == "si") {
+        Console.WriteLine("Quanti posti prenotati vuoi disdire?");
+        input = Console.ReadLine();
+        evento.DisdirePrenotazione(int.Parse(input));
+        Console.WriteLine("Posti prenotati disdetti, vuoi disdirne altri? si/no");
+        input = Console.ReadLine();
+
+    }
+    Console.WriteLine("Posti ancora disponibili: " + evento.PostiDisponibili());
+
+
+
+    Console.WriteLine(evento);
 }
 catch (Exception e) {
     Console.WriteLine(e);

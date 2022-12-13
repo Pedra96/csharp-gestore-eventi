@@ -66,6 +66,12 @@ namespace GestoreEventi {
                 PostiPrenotati += Prenotazione;
             }
         }
+        public int PostiDisponibili() {
+            return CapienzaMax - PostiPrenotati;
+        }
+        public void DisdirePrenotazione(int disdire) {
+            PostiPrenotati-= disdire;
+        }
         public override string ToString() {
             string print = "Data: " + GetData()+"\n";
             print += "Titolo: " + GetTitolo();
