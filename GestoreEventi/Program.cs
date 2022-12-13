@@ -3,8 +3,7 @@
 using GestoreEventi;
 using static System.Net.Mime.MediaTypeNames;
 
-List<Evento> ListaEventi = new List<Evento>();
-
+List<Evento> listaEventi = new();
 Console.Write("Inserire un titolo: ");
 string titolo = Console.ReadLine();
 Console.Write("Inserire data (gg/mm/yyyy): ");
@@ -13,7 +12,12 @@ Console.Write("Capienza masssima: ");
 string capienza = Console.ReadLine();
 
 Evento evento = new(titolo, data, int.Parse(capienza));
-
+listaEventi.Add(evento);
+listaEventi.Add(evento);
+listaEventi.Add(evento);
+listaEventi.Add(evento);
+listaEventi.Add(evento);
+listaEventi.Add(evento);
 try {
     Console.WriteLine("Posti prenotati " + evento.GetPostiPrenotati());
     Console.WriteLine("Posti disponibili " + evento.PostiDisponibili());
@@ -47,3 +51,4 @@ try {
 catch (Exception e) {
     Console.WriteLine(e);
 }
+ProgrammaEventi.GetListaEvento(listaEventi);

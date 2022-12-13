@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GestoreEventi {
+    public class ProgrammaEventi {
+        string Titolo;
+        List<Evento> eventi;
+
+        public ProgrammaEventi(string Titolo) {
+            this.Titolo= Titolo;
+            eventi= new List<Evento>();
+        }
+
+        public void AddEvento(Evento evento) {
+            eventi.Add(evento);
+        }
+        public static void GetListaEvento(List<Evento> lista) {
+            foreach(var evento in lista) {
+               Console.WriteLine(evento);
+            }
+            Console.WriteLine();
+        }
+        public int EventiCount() {
+            return eventi.Count;
+        }
+        public void EmptyList() {
+            eventi = new List<Evento>();
+        }
+
+        public void GetEventi() {
+            Console.WriteLine(Titolo + ":");
+            foreach (Evento evento in eventi) {
+                Console.WriteLine(evento);
+            }
+        }
+    }
+}
